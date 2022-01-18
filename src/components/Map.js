@@ -37,7 +37,7 @@ const Map = () => {
 
     }, 2000);
 
-
+    console.log(marker);
     return (
         <div id="map" className="map">
             <MapContainer center={[51.505, -0.09]} zoom={8} scrollWheelZoom={true}>
