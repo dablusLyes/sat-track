@@ -28,7 +28,10 @@ const Map = () => {
     //         position: [2.73878, 4.545094]
     //     },
     // ]);
-    // array of objects with lattiude and longitude of 20 cities in europe 
+
+
+    // make a call to the api every two seconds and update the state
+
 
     const [marker, setMarker] = useState([
         {

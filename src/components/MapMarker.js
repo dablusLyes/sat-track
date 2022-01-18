@@ -12,11 +12,13 @@ const MapMarker = ({ marker }) =>  {
     return (
         marker.map((mark,index) =>{
             return (
-                <Marker key={index} position={mark.position}>
-                    <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                    </Popup>
-            </Marker>
+                <div className="map-div">
+                    <Marker key={index} position={mark.position}>
+                        <Popup>
+                            A pretty CSS3 popup. <br /> Easily customizable.
+                        </Popup>
+                    </Marker>
+                </div>
             )
         })
     )

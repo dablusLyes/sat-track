@@ -46,6 +46,11 @@ h1, h2, p {
 }
 .leaflet-container {
   height: 800px;
-  width: 100%;
+  width: 98%;
   margin: 0 auto;
+  -webkit-box-shadow: 8px 9px 22px 5px rgba(0,0,0,0.48); 
+box-shadow: 8px 9px 22px 5px rgba(0,0,0,0.48);
+}
+.map-div{
+  width: 800px;
 }
