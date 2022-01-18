@@ -9,7 +9,6 @@ function App() {
       <div className="app-title">
         <h1>Satellite tracker</h1>
       </div>
-      
       <div className="leaflet-container">
         <Map/>
       </div>
