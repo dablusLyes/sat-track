@@ -10,7 +10,7 @@ const Map = () => {
 
 
     
-    // const [marker, setMarker] = useState([
+    // const [marker, setMarker] = u seState([
     //     {
     //         id: uuid(),
     //         position: [47.373878, 8.545094]
