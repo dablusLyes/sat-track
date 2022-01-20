@@ -13,10 +13,10 @@ function App() {
         </h1>
       </div>
       <div className="content-container">
-        <div>
+        <div className="sat-details">
           <SatDetails />
         </div>
-        <div>
+        <div className="sat-map">
           <Map/>
         </div>
       </div>
