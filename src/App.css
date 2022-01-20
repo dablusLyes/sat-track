@@ -45,12 +45,11 @@ h1, h2, p {
   text-align: center;
 }
 .leaflet-container {
-  height: 800px;
-  width: 98%;
+  height: 930px;
+  width: 97%;
+  border-radius: 5px;
   margin: 0 auto;
-  -webkit-box-shadow: 8px 9px 22px 5px rgba(0,0,0,0.48); 
-box-shadow: 8px 9px 22px 5px rgba(0,0,0,0.48);
+  background: none;
+  box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.49);
 }
-.map-div{
-  width: 800px;
-}
+
