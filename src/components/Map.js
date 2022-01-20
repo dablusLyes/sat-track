@@ -42,7 +42,6 @@ const Map = () => {
     ]);
     console.log(marker[0].position);
     
-    // setInterval(() => {        
     //     fetch('https://api.wheretheiss.at/v1/satellites/25544')
     //     .then(response => response.json())  // convert to json
     //     .then(data => {
@@ -58,7 +57,6 @@ const Map = () => {
 
     //         setMarker(marker);
     //     })
-    // }, 3000);
         
 
     return (
