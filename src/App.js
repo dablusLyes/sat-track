@@ -1,6 +1,6 @@
 import './App.css';
 import Map from './components/Map'
-import SatDetails from './components/SatDetails';
+import SatDetails from './components/SatDetails.js';
 
 
 function App() {
@@ -13,9 +13,6 @@ function App() {
         </h1>
       </div>
       <div className="content-container">
-        <div className="sat-details">
-          <SatDetails />
-        </div>
         <div className="sat-map">
           <Map/>
         </div>
