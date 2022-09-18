@@ -40,23 +40,21 @@ const Map = () => {
         },
 
     ]);
-    console.log(marker[0].position);
+    console.log(marker);
     
-    //     fetch('https://api.wheretheiss.at/v1/satellites/25544')
-    //     .then(response => response.json())  // convert to json
-    //     .then(data => {
-    //         console.log(data);
-    //         let marker = {
-    //             id: uuid(),
-    //             position: [
-    //                 data.latitude,
-    //                 data.longitude
-    //             ]
-    //         }
-    //         console.log(marker);
+    fetch('https://api.wheretheiss.at/v1/satellites/25544')
+    .then(response => response.json())  // convert to json
+    .then(data => {
+        let marker = {
+            id: uuid(),
+            position: [
+                data.latitude,
+                data.longitude
+            ]
+        }
+        console.log(marker);
 
-    //         setMarker(marker);
-    //     })
+    })
         
 
     return (
