@@ -38,53 +38,28 @@ const Map = () => {
         { latitude: 51.5074, longitude: 0.1278 },
         { latitude: 52.5200, longitude: 13.4050 },
       ];
-      
-      const [marker, setMarker] = useState(
-        {
-            id: uuid(),
-            position: [47.373878, 8.545094]
-        });
-
-      useEffect(() => {
-        for (const position in positions) {
-            if (Object.hasOwnProperty.call(positions, position)) {
-                const element = positions[position];
-                console.log(element);
-                setMarker({id:uuid(),position : [element.latitude,element.longitude]})
-                setTimeout(null, 1000)
-
-            }
-        }
-      }, [])
-      
+  
     
-    // const [marker, setMarker] = u seState([
-    //     {
-    //         id: uuid(),
-    //         position: [47.373878, 8.545094]
-    //     },
-    //     {
-    //         id: uuid(),
-    //         position: [21.73878, 1.545094]
-    //     },
-    //     {
-    //         id: uuid(),
-    //         position: [7.373878, 5.545094]
-    //     },
-    //     {
-    //         id: uuid(),
-    //         position: [2.73878, 4.545094]
-    //     },
-    // ]);
+  const [marker, setMarker] = useState([
+      {
+          id: uuid(),
+          position: [47.373878, 8.545094]
+      },
+      {
+          id: uuid(),
+          position: [21.73878, 1.545094]
+      },
+      {
+          id: uuid(),
+          position: [7.373878, 5.545094]
+      },
+      {
+          id: uuid(),
+          position: [2.73878, 4.545094]
+      },
+  ]);
 
-
-    // make a call to the api every two seconds and update the state
-
-
-    
-    console.log(marker);
-    
-    return (
+  return (
         <div id="map" className="map">
             <MapContainer center={[47.373878, 8.545094]} zoom={5} scrollWheelZoom={true}>
                 <TileLayer
