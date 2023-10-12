@@ -1,15 +1,26 @@
 import React from "react"
 import {Marker, Popup } from 'react-leaflet'
+import L from 'leaflet';
+import satSvg from '../FP_Satellite_icon.svg'
 
-const SAT_ICON = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AFP_Satellite_icon.svg&psig=AOvVaw18Io_SP6OKzVbXYKDWVYYP&ust=1697108193423000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCOiSiuvq7YEDFQAAAAAdAAAAABAE"
-
+const satIcon = new L.Icon({
+    iconUrl: satSvg,
+    iconRetinaUrl: satSvg,
+    iconAnchor: null,
+    popupAnchor: null,
+    shadowUrl: null,
+    shadowSize: null,
+    shadowAnchor: null,
+    iconSize: new L.Point(30, 30),
+    className: 'leaflet-div-icon'
+});
 
 const MapMarker = ({ marker }) =>  {
     return (
         marker.map((mark) =>{
             return (
                 <div   key={mark.id} className="map-div">
-                    <Marker  position={mark.position}>
+                    <Marker icon={satIcon} position={mark.position}>
                         <Popup>
                             A pretty CSS3 popup. <br /> Easily customizable.
                         </Popup>

@@ -15,7 +15,7 @@ export default function NavMenu() {
                 <span></span>
                 <span></span>
             </div>
-
+            
             <div style={{display: showList ? 'flex' : 'none' }} ref={navListRef} className='navList'>
                 <div>Github</div>
                 <div>Linkedin</div>
