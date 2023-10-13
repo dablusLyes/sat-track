@@ -11,8 +11,8 @@ function App() {
     <div className="App">
       <div className="app-header">
         <h1>
-          <img className='satLogo' src={satSvg}></img>
           Satellite
+          <img className='satLogo' src={satSvg}></img>
           tracker
         </h1>
         <NavMenu/>
