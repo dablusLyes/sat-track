@@ -3,7 +3,7 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const router = express.Router();
-const NUMBER_OF_POSITIONS = "3";
+const NUMBER_OF_POSITIONS = "120";
 const API_KEY = "7VTRMM-8J5B8W-4NKEJF-4RW6";
 let norad_list = [];
 
@@ -21,7 +21,7 @@ const fetch_sat_data_from_api = async (NORAD) => {
   // TESTNIG
   return axios({
     method: "get",
-    url: `https://api.n2yo.com/rest/v1/satellite/positions/${NORAD}/41.702/-76.014/0/${NUMBER_OF_POSITIONS}/&apiKey= + ${API_KEY}`,
+    url: `https://api.n2yo.com/rest/v1/satellite/positions/${NORAD}/41.702/-76.014/0/${NUMBER_OF_POSITIONS}/&apiKey=${API_KEY}`,
   }).then((res) => res.data);
 };
 
@@ -59,11 +59,16 @@ const sat_result_destructuring = async (data) => {
   return sats;
 };
 router.use("/", async (req, res, next) => {
-  let data = await multiple_sat_fetch(norad_list);
-  let dz = await sat_result_destructuring(data, NUMBER_OF_POSITIONS);
-  fs.writeFileSync("./fullData.json", JSON.stringify(data), null, 4);
-  fs.writeFileSync("./CuratedData.json", JSON.stringify(dz), null, 4);
-  res.send(dz);
+  try {
+    
+    let data = await multiple_sat_fetch(norad_list);
+    let dz = await sat_result_destructuring(data, NUMBER_OF_POSITIONS);
+    fs.writeFileSync("./fullData.json", JSON.stringify(data), null, 4);
+    fs.writeFileSync("./CuratedData.json", JSON.stringify(dz), null, 4);  
+    res.send(dz);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
