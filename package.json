@@ -24,6 +24,7 @@
     "y": "^0.3.2"
   },
   "scripts": {
+    "wss" :"nodemon ./server/wsServer.js",
     "client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

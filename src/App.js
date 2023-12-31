@@ -1,29 +1,34 @@
-import './App.css';
-import Map from './components/Map'
-import SatDetails from './components/SatDetails.js';
+import "./App.css";
+import { useState } from "react";
+import Map from "./components/Map";
+import SatDetails from "./components/SatDetails";
 import NavMenu from "./components/NavMenu";
-import satSvg from './FP_Satellite_icon.svg'
-
-
+import satSvg from "./FP_Satellite_icon.svg";
 
 function App() {
-  return (
-    <div className="App">
-      <div className="app-header">
-        <h1>
-          Satellite
-          <img className='satLogo' src={satSvg}></img>
-          tracker
-        </h1>
-        <NavMenu/>
-      </div>
-      <div className="content-container">
-        <div className="sat-map">
-          <Map/>
-        </div>
-      </div>
-    </div>
-  );
+	const [showDetails, setShowDetails] = useState(false);
+	return (
+		<div className="App">
+			<div className="app-header">
+				<h1>
+					Satellite
+					<img
+						alt="Sat Logo"
+						className="satLogo"
+						src={satSvg}
+					></img>
+					tracker
+				</h1>
+				<NavMenu />
+			</div>
+			{showDetails && <SatDetails />}
+			<div className="content-container">
+				<div className="sat-map">
+					<Map showDetails={setShowDetails} />
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default App;
