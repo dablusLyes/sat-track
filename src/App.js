@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Map from "./components/Map";
 import SatDetails from "./components/SatDetails";
 import NavMenu from "./components/NavMenu";
@@ -7,6 +7,7 @@ import satSvg from "./FP_Satellite_icon.svg";
 
 function App() {
 	const [showDetails, setShowDetails] = useState(false);
+
 	return (
 		<div className="App">
 			<div className="app-header">

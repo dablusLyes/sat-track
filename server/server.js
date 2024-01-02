@@ -1,31 +1,21 @@
 const app = require("express")();
 const path = require("path");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const dataFetcher = require("./fetcher");
-const WebSocket = require("ws");
-
+const httpServer = require("http").createServer(app);
 const PORT = "3001";
-
-const wss = new WebSocket.Server({ server: app });
-
-const clients = new Set();
-
-wss.on("connection", (ws) => {
-	console.log("Client connected");
-	clients.add(ws);
-
-	ws.on("message", (message) => {
-		console.log(`Received: ${message}`);
-	});
-
-	ws.on("close", () => {
-		console.log("Client disconnected");
-		clients.delete(ws);
-	});
+const io = require("socket.io")(PORT, {
+	cors: {
+		origin: ["http://localhost:3000"],
+	},
 });
 
-app.use("/", dataFetcher);
-
-app.listen(PORT, () => {
-	console.log("listening on http://localhost:" + PORT);
+io.on("connection", (socket) => {
+	console.log("new socket connection", socket.id);
 });
+
+setInterval(() => {
+	io.emit("satPosition", "position of sat => zebi");
+	console.log("n7eb javascript ");
+}, 1000);

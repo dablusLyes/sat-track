@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import MapMarker from "./MapMarker";
 import { v4 as uuid } from "uuid";
+import io from "socket.io-client";
+
 const Map = ({ showDetails }) => {
 	const positions = [
 		{ lat: 37.7749, lon: 122.4194 },
@@ -51,6 +53,18 @@ const Map = ({ showDetails }) => {
 			positions: { lat: 57.52, lon: 13.405 },
 		},
 	]);
+
+	const socket = io("http://localhost:3001");
+	useEffect(() => {
+		console.log("n7eb react");
+		socket.on("satPosition", (message) => {
+			console.log("dz?????", message, socket.id);
+		});
+		return () => {
+			socket.off("broadcast");
+		};
+	}, []);
+
 	return (
 		<div
 			id="map"
