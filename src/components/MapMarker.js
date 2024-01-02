@@ -16,6 +16,7 @@ const satIcon = new L.Icon({
 });
 
 const MapMarker = ({ marker }) => {
+	console.log(marker);
 	return marker.map((mark) => {
 		return (
 			<div
@@ -24,10 +25,7 @@ const MapMarker = ({ marker }) => {
 			>
 				<Marker
 					icon={satIcon}
-					position={mark.position}
-					onClick={() => {
-						console.log("nik mok");
-					}}
+					position={mark.positions}
 				>
 					<Popup>
 						A pretty CSS3 popup. <br /> Easily customizable.

@@ -5,51 +5,59 @@ import MapMarker from "./MapMarker";
 import { v4 as uuid } from "uuid";
 const Map = ({ showDetails }) => {
 	const positions = [
-		{ latitude: 37.7749, longitude: 122.4194 },
-		{ latitude: 34.0522, longitude: 118.2437 },
-		{ latitude: 40.7128, longitude: 74.006 },
-		{ latitude: 41.8781, longitude: 87.6298 },
-		{ latitude: 51.5074, longitude: 0.1278 },
-		{ latitude: 48.8566, longitude: 2.3522 },
-		{ latitude: 35.6895, longitude: 139.6917 },
-		{ latitude: 52.52, longitude: 13.405 },
-		{ latitude: 55.7558, longitude: 37.6176 },
-		{ latitude: 45.5088, longitude: 73.554 },
-		{ latitude: 33.8688, longitude: 151.2093 },
-		{ latitude: 22.9068, longitude: 43.1729 },
-		{ latitude: 48.8566, longitude: 2.3522 },
-		{ latitude: 55.7558, longitude: 37.6176 },
-		{ latitude: 45.5088, longitude: 73.554 },
-		{ latitude: 33.8688, longitude: 151.2093 },
-		{ latitude: 22.9068, longitude: 43.1729 },
-		{ latitude: 51.5074, longitude: 0.1278 },
-		{ latitude: 52.52, longitude: 13.405 },
-		{ latitude: 48.8566, longitude: 2.3522 },
-		{ latitude: 37.7749, longitude: 122.4194 },
-		{ latitude: 34.0522, longitude: 118.2437 },
-		{ latitude: 40.7128, longitude: 74.006 },
-		{ latitude: 41.8781, longitude: 87.6298 },
-		{ latitude: 55.7558, longitude: 37.6176 },
-		{ latitude: 45.5088, longitude: 73.554 },
-		{ latitude: 33.8688, longitude: 151.2093 },
-		{ latitude: 22.9068, longitude: 43.1729 },
-		{ latitude: 51.5074, longitude: 0.1278 },
-		{ latitude: 52.52, longitude: 13.405 },
+		{ lat: 37.7749, lon: 122.4194 },
+		{ lat: 34.0522, lon: 118.2437 },
+		{ lat: 40.7128, lon: 74.006 },
+		{ lat: 41.8781, lon: 87.6298 },
+		{ lat: 51.5074, lon: 0.1278 },
+		{ lat: 48.8566, lon: 2.3522 },
+		{ lat: 35.6895, lon: 139.6917 },
+		{ lat: 52.52, lon: 13.405 },
+		{ lat: 55.7558, lon: 37.6176 },
+		{ lat: 45.5088, lon: 73.554 },
+		{ lat: 33.8688, lon: 151.2093 },
+		{ lat: 22.9068, lon: 43.1729 },
+		{ lat: 48.8566, lon: 2.3522 },
+		{ lat: 55.7558, lon: 37.6176 },
+		{ lat: 45.5088, lon: 73.554 },
+		{ lat: 33.8688, lon: 151.2093 },
+		{ lat: 22.9068, lon: 43.1729 },
+		{ lat: 51.5074, lon: 0.1278 },
+		{ lat: 52.52, lon: 13.405 },
+		{ lat: 48.8566, lon: 2.3522 },
+		{ lat: 37.7749, lon: 122.4194 },
+		{ lat: 34.0522, lon: 118.2437 },
+		{ lat: 40.7128, lon: 74.006 },
+		{ lat: 41.8781, lon: 87.6298 },
+		{ lat: 55.7558, lon: 37.6176 },
+		{ lat: 45.5088, lon: 73.554 },
+		{ lat: 33.8688, lon: 151.2093 },
+		{ lat: 22.9068, lon: 43.1729 },
+		{ lat: 51.5074, lon: 0.1278 },
+		{ lat: 52.52, lon: 13.405 },
 	];
 
 	const [marker, setMarker] = useState([
 		{
-			positions: { latitude: 52.52, longitude: 13.405 },
+			positions: { lat: 52.52, lon: 13.405 },
+		},
+		{
+			positions: { lat: 31.52, lon: 66.405 },
+		},
+		{
+			positions: { lat: 22.52, lon: 13.405 },
+		},
+		{
+			positions: { lat: 57.52, lon: 13.405 },
 		},
 	]);
-
 	return (
 		<div
 			id="map"
 			className="map"
 		>
 			<MapContainer
-				center={[47.373878, 8.545094]}
+				center={[20, 20]}
 				zoom={5}
 				scrollWheelZoom={true}
 			>
