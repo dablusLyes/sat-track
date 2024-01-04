@@ -75,4 +75,19 @@ router.use("/", async (req, res) => {
 	}
 });
 
-module.exports = router;
+async function fetchData() {
+	try {
+		let rawData = await multiple_sat_fetch(norad_list);
+		let curatedData = await sat_result_destructuring(
+			rawData,
+			NUMBER_OF_POSITIONS,
+		);
+		// fs.writeFileSync("./fullData.json", JSON.stringify(data), null, 4);
+		// fs.writeFileSync("./CuratedData.json", JSON.stringify(dz), null, 4);
+		return curatedData;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+module.exports = fetchData;
