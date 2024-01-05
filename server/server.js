@@ -1,32 +1,47 @@
-const app = require("express")();
-const path = require("path");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const httpServer = require("http").createServer(app);
+const CONFIG = require("../config");
+console.log(CONFIG.SERVER.PORT);
+const DATA_REFRESH_INTERVAL = (CONFIG.SERVER.SAT_POSITIONS - 10) * 1000; //refresh the data every 100sec
 const fetchData = require("./fetcher");
-const { log } = require("console");
-
-const PORT = "3001";
+const PORT = CONFIG.SERVER.PORT;
 const io = require("socket.io")(PORT, {
 	cors: {
 		origin: ["http://localhost:3000"],
 	},
 });
-const DATA_REFRESH_INTERVAL = 100000; //refresh the data every 100sec
-
+let numberOfConnexions = 0;
 io.on("connection", (socket) => {
 	console.log("new socket connection", socket.id);
+	numberOfConnexions++;
+});
+io.on("disconnect", () => {
+	numberOfConnexions--;
+	console.log(`Connected clients: ${numberOfConnexions}`);
 });
 
-// fetchData().then((broadcastData) => {
-// 	io.emit("satPosition", broadcastData);
-// 	console.log("Data emitted first time");
+let dataStack = {};
 
-// 	setInterval(() => {
-// 		io.emit("satPosition", broadcastData);
-// 		console.log("Data emitted");
-// 	}, DATA_REFRESH_INTERVAL);
-// });
-const dataStack = [];
-
-fetchData().then((data) => {});
+fetchData()
+	.then((data) => {
+		dataStack = { ...dataStack, ...data };
+		console.log(dataStack);
+		setInterval(() => {
+			fetchData().then((data) => {
+				dataStack = { ...dataStack, ...data };
+			});
+		}, DATA_REFRESH_INTERVAL);
+	})
+	.finally(() => {
+		setInterval(() => {
+			const currentDate = new Date();
+			const currentTimeStamp = Math.ceil(currentDate.getTime() / 1000);
+			// console.log("satPosition", dataStack[currentTimeStamp]);
+			console.log(
+				"Emitted this timestamp",
+				currentTimeStamp,
+				"  :  ",
+				Object.keys(dataStack).length,
+			);
+			io.emit("satPosition", dataStack[currentTimeStamp]);
+			delete dataStack[currentTimeStamp];
+		}, 1000);
+	});

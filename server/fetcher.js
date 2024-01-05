@@ -1,10 +1,13 @@
 const axios = require("axios");
 const express = require("express");
-const fs = require("fs");
+const CONFIG = require("../config");
 const path = require("path");
 const router = express.Router();
-const NUMBER_OF_POSITIONS = "120";
-const API_KEY = "7VTRMM-8J5B8W-4NKEJF-4RW6";
+const fs = require("fs");
+
+const NUMBER_OF_POSITIONS = CONFIG.SERVER.SAT_POSITIONS;
+const API_KEY = CONFIG.SERVER.API_KEY;
+
 let norad_list = [];
 
 try {
@@ -51,8 +54,10 @@ const sat_result_destructuring = async (data) => {
 			const s = {
 				satname: sat.info.satname,
 				satid: sat.info.satid,
-				latitude: pos.satlatitude,
-				longitude: pos.satlongitude,
+				positions: {
+					lat: pos.satlatitude,
+					lon: pos.satlongitude,
+				},
 			};
 
 			sats[pos.timestamp].push(s);
@@ -83,7 +88,12 @@ async function fetchData() {
 			NUMBER_OF_POSITIONS,
 		);
 		// fs.writeFileSync("./fullData.json", JSON.stringify(data), null, 4);
-		// fs.writeFileSync("./CuratedData.json", JSON.stringify(dz), null, 4);
+		fs.writeFileSync(
+			"./fullData.json",
+			JSON.stringify(curatedData),
+			null,
+			4,
+		);
 		return curatedData;
 	} catch (error) {
 		console.log(error);

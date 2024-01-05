@@ -4,9 +4,11 @@ import Map from "./components/Map";
 import SatDetails from "./components/SatDetails";
 import NavMenu from "./components/NavMenu";
 import satSvg from "./FP_Satellite_icon.svg";
+import io from "socket.io-client";
 
 function App() {
 	const [showDetails, setShowDetails] = useState(false);
+	console.log("APPJS RENDERING?");
 
 	return (
 		<div className="App">
