@@ -4,6 +4,7 @@ const CONFIG = require("../config");
 const path = require("path");
 const router = express.Router();
 const fs = require("fs");
+const { log } = require("console");
 
 const NUMBER_OF_POSITIONS = CONFIG.SERVER.SAT_POSITIONS;
 const API_KEY = CONFIG.SERVER.API_KEY;
@@ -15,9 +16,9 @@ try {
 		path.join(__dirname, "./", "norad.txt"),
 		"utf8",
 	);
-	norad_list = data.split(" ");
+	norad_list = data.trim().split(" ");
 } catch (err) {
-	console.error(err);
+	console.log(err);
 }
 
 // norad_list = ['25544','36516'];
@@ -29,7 +30,15 @@ const fetch_sat_data_from_api = async (NORAD) => {
 			url: `https://api.n2yo.com/rest/v1/satellite/positions/${NORAD}/41.702/-76.014/0/${NUMBER_OF_POSITIONS}/&apiKey=${API_KEY}`,
 		}).then((res) => res.data);
 	} catch (error) {
-		console.error(error);
+		console.log(error);
+	}
+};
+
+const isValidNorad = (norad) => {
+	if (typeof norad === "number") {
+		return true;
+	} else {
+		return false;
 	}
 };
 
@@ -38,7 +47,15 @@ const multiple_sat_fetch = async (norad_list) => {
 	let sat_res = [];
 	for (let i = 0; i < norad_list.length; i++) {
 		const curr_norad = norad_list[i];
+		if (isValidNorad(curr_norad) === false) {
+			continue;
+		}
+		console.log(curr_norad);
 		let data = await fetch_sat_data_from_api(curr_norad);
+		if (data == undefined) {
+			console.log("SATELITE NOT FOUND, NORAD: ", curr_norad);
+			continue;
+		}
 		sat_res.push({ ...data });
 	}
 	return sat_res;
@@ -46,7 +63,6 @@ const multiple_sat_fetch = async (norad_list) => {
 
 const sat_result_destructuring = async (data) => {
 	const sats = {};
-
 	for (const sat of data) {
 		sat.positions.forEach((pos) => {
 			if (!sats[pos.timestamp]) sats[pos.timestamp] = [];

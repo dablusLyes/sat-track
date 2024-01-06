@@ -46,9 +46,7 @@ const MapMarker = () => {
 					icon={satIcon}
 					position={mark.positions}
 				>
-					<Popup>
-						A pretty CSS3 popup. <br /> Easily customizable.
-					</Popup>
+					<Popup>{mark.satName}</Popup>
 				</Marker>
 			</>
 		);

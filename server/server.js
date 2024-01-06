@@ -22,11 +22,10 @@ let dataStack = {};
 
 fetchData()
 	.then((data) => {
-		dataStack = { ...dataStack, ...data };
-		console.log(dataStack);
+		dataStack = { ...data };
 		setInterval(() => {
 			fetchData().then((data) => {
-				dataStack = { ...dataStack, ...data };
+				dataStack = { ...data };
 			});
 		}, DATA_REFRESH_INTERVAL);
 	})
